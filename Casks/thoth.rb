@@ -12,6 +12,11 @@ cask "thoth" do
 
   app "Thoth.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Thoth.app"]
+  end
+
   zap trash: [
     "~/Library/Application Support/com.thoth.app",
     "~/Library/Application Support/thoth",
